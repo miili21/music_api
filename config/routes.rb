@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :releases, only: [:index]
+    resources :releases, only: [ :index ]
   end
 end

@@ -12,13 +12,13 @@ class Api::ReleasesController < ApplicationController
     # Pagination with 10 records per page (default)
     releases = releases.page(params[:page]).per(params[:per_page] || 10)
 
-    #JSON format
+    # JSON format
     render json: releases.as_json(
       include: {
-        album: { only: [:id, :title] },
-        artists: { only: [:id, :name] }
+        album: { only: [ :id, :title ] },
+        artists: { only: [ :id, :name ] }
       },
-      only: [:id, :title, :release_date]
+      only: [ :id, :title, :release_date ]
     )
   end
 end
