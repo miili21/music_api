@@ -21,4 +21,22 @@ class Api::ReleasesController < ApplicationController
       only: [ :id, :title, :release_date ]
     )
   end
+
+  def show
+    release = Release.includes(:album, :artists).find(params[:id])
+
+    render json: release.as_json(
+      include: {
+        album: { only: [:id, :title] },
+        artists: { only: [:id, :name] }
+      },
+      only: [:id, :title, :release_date]
+    )
+  end
+
+   private
+
+  def not_found
+    render json: { error: "Release not found" }, status: :not_found
+  end
 end
