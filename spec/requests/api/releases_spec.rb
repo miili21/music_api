@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Api::Releases", type: :request do
-
   describe "GET /api/releases" do
     it "returns all releases" do
       album = Album.create!(title: "Test Album")
@@ -88,5 +87,4 @@ RSpec.describe "Api::Releases", type: :request do
       expect(json.length).to eq(1)
     end
   end
-
 end

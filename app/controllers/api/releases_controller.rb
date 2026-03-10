@@ -27,10 +27,10 @@ class Api::ReleasesController < ApplicationController
 
     render json: release.as_json(
       include: {
-        album: { only: [:id, :title] },
-        artists: { only: [:id, :name] }
+        album: { only: [ :id, :title ] },
+        artists: { only: [ :id, :name ] }
       },
-      only: [:id, :title, :release_date]
+      only: [ :id, :title, :release_date ]
     )
   end
 
