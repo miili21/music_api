@@ -1,6 +1,12 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
+
+# Use localhost instead of "db" (Docker hostname) when running tests locally
+if ENV['DATABASE_URL'].to_s.include?('@db')
+  ENV['DATABASE_URL'] = ENV['DATABASE_URL'].sub(/@db(:\d+)?/, '@localhost\1')
+end
+
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
