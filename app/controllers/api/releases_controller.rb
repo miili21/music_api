@@ -1,4 +1,7 @@
 class Api::ReleasesController < ApplicationController
+  
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  
   def index
     releases = Release.includes(:album, :artists)
 
