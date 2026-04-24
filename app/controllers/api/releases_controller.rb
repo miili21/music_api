@@ -1,6 +1,6 @@
 class Api::ReleasesController < ApplicationController
   
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   
   def index
     releases = Release.includes(:album, :artists)
@@ -13,7 +13,7 @@ class Api::ReleasesController < ApplicationController
     end
 
     # Pagination with 10 records per page (default)
-    releases = releases.page(params[:page]).per(params[:per_page] || 10)
+    releases =Release.page(params[:page]).per(params[:per_page])
 
     # JSON format
     render json: releases.as_json(
@@ -39,7 +39,4 @@ class Api::ReleasesController < ApplicationController
 
    private
 
-  def not_found
-    render json: { error: "Release not found" }, status: :not_found
-  end
 end
