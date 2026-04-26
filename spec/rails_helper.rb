@@ -1,6 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
-ENV['RAILS_ENV'] ||= 'test'
+ENV['RAILS_ENV'] = 'test'
 
 # Use localhost instead of "db" (Docker hostname) when running tests locally
 if ENV['DATABASE_URL'].to_s.include?('@db')

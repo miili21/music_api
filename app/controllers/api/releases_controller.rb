@@ -13,13 +13,13 @@ class Api::ReleasesController < ApplicationController
     end
 
     # Pagination with 10 records per page (default)
-    releases =Release.page(params[:page]).per(params[:per_page])
+    releases =releases.page(params[:page]).per(params[:per_page])
 
      render json: releases.as_json(json_options)
   end
 
   def show
-    release = release.includes(:album, :artists).find(params[:id])
+    release = Release.includes(:album, :artists).find(params[:id])
 
     render json: release.as_json(json_options)
   end
