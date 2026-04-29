@@ -21,7 +21,7 @@ Release.create!(
   title: "Poker Face",
   release_date: Date.new(2008, 11, 23),
   album: The_Fame,
-  artists: [Lady_Gaga]
+  artists: [ Lady_Gaga ]
 )
 
 # Reciente (Para probar el filtro 'past')
@@ -29,7 +29,7 @@ Release.create!(
   title: "SWIM",
   release_date: 1.month.ago,
   album: Arirang,
-  artists: [BTS]
+  artists: [ BTS ]
 )
 
 # Futuro (Para probar el filtro 'upcoming')
@@ -37,7 +37,7 @@ Release.create!(
   title: "Nuevo Single Promocional",
   release_date: 2.month.from_now,
   album: You_Seen_Pretty_Sad_For_a_Girl_So_In_Love,
-  artists: [Olivia_Rodrigo]
+  artists: [ Olivia_Rodrigo ]
 )
 
 puts "Se crearon #{Artist.count} artistas, #{Album.count} álbumes y #{Release.count} lanzamientos."
