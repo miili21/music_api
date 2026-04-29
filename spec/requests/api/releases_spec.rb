@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Api::Releases", type: :request do
   let(:json) { JSON.parse(response.body) }
-  
+
   describe "GET /api/releases" do
     it "returns all releases" do
       album = Album.create!(title: "Test Album")
@@ -37,7 +37,7 @@ RSpec.describe "Api::Releases", type: :request do
 
     it "returns a 404 when the release is not found" do
       get "/api/releases/999999"
-      
+
       expect(response).to have_http_status(:not_found)
       expect(json['error']).to eq("Not found")
     end
@@ -74,14 +74,14 @@ RSpec.describe "Api::Releases", type: :request do
       json.each do |r|
         expect(Date.parse(r['release_date'])).to be >= Date.today
       end
-    end 
-  end 
+    end
+  end
 
   describe "GET /api/releases pagination" do
     it "limits number of releases returned" do
       album = Album.create!(title: "Test Album")
       3.times { |i| Release.create!(title: "R#{i}", release_date: Date.today, album: album) }
-        
+
       # Corregido: params con una sola 'a' y formato correcto
       get "/api/releases", params: { per_page: 1 }
       expect(json.length).to eq(1)

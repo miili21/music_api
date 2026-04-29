@@ -1,7 +1,6 @@
 class Api::ReleasesController < ApplicationController
-  
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
-  
+
   def index
     releases = Release.includes(:album, :artists)
 
@@ -29,10 +28,10 @@ private
   def json_options
     {
       include: {
-        album: { only: [:id, :title] },
-        artists: { only: [:id, :name] }
+        album: { only: [ :id, :title ] },
+        artists: { only: [ :id, :name ] }
       },
-      only: [:id, :title, :release_date]
+      only: [ :id, :title, :release_date ]
     }
   end
 
